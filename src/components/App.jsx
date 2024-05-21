@@ -1,16 +1,19 @@
+import { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { getContacts } from '../redux/state';
+
+const Key = 'Contacts';
+
 export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+  const contacts = useSelector(getContacts);
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      localStorage.setItem(Key, JSON.stringify(contacts));
+    } else {
+      isMounted.current = true;
+    }
+  }, [contacts]);
+  return <div>React homework template</div>;
 };
