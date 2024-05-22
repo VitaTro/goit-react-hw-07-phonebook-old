@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { getContacts } from '../redux/state';
-
+import { ContactAdd } from './ContactAdd/ContactAdd';
+import { ContactList } from './ContactList/ContactList';
+import { Filter } from './Filter/Filter';
+import { getContacts } from './redux/state';
 const Key = 'Contacts';
 
 export const App = () => {
@@ -15,5 +17,13 @@ export const App = () => {
       isMounted.current = true;
     }
   }, [contacts]);
-  return <div>React homework template</div>;
+  return (
+    <div>
+      <h1>Phonebook</h1>
+      <ContactAdd />
+      <h2>Contacts</h2>
+      <Filter />
+      <ContactList />
+    </div>
+  );
 };
