@@ -1,6 +1,7 @@
 import { getContacts } from 'components/redux/state';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../redux/contactsSlice';
+import css from './ContactAdd.module.css';
 
 export const ContactAdd = () => {
   const dispatch = useDispatch();
@@ -22,12 +23,15 @@ export const ContactAdd = () => {
     }
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="user-name">Name</label>
+    <div className={css.primary}>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <div className={css.container}>
+          <label htmlFor="user-name" className={css.label}>
+            Name
+          </label>
           <div>
             <input
+              className={css.input}
               type="text"
               name="name"
               pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)$/"
@@ -37,10 +41,13 @@ export const ContactAdd = () => {
           </div>
         </div>
 
-        <div>
-          <label htmlFor="number">Number</label>
+        <div className={css.container}>
+          <label htmlFor="number" className={css.label}>
+            Number
+          </label>
           <div>
             <input
+              className={css.input}
               type="tel"
               name="number"
               pattern="/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/"
@@ -49,7 +56,9 @@ export const ContactAdd = () => {
             />
           </div>
         </div>
-        <button type="submit">Add contact</button>
+        <button type="submit" className={css.button}>
+          Add contact
+        </button>
       </form>
     </div>
   );

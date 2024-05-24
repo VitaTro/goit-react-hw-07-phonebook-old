@@ -1,0 +1,10 @@
+.primary {
+  padding-left: 50px;
+  width: 600px;
+  margin: 0 auto;
+}
+.header {
+  margin-left: 50px;
+  color: rgb(93, 3, 3);
+  font-weight: bold;
+}
