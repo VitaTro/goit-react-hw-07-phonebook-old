@@ -1,30 +1,30 @@
-// import { getContacts } from 'components/redux/state';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { addContact } from '../redux/contactsSlice';
+import { addContact } from 'components/redux/operations';
+import { getContacts } from 'components/redux/state';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactAdd.module.css';
 
 export const ContactAdd = () => {
-  // const dispatch = useDispatch();
-  // const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   const form = e.currentTarget;
-  //   const name = form.elements.name.value;
-  //   const number = form.elements.number.value;
-  //   const isInBase = contacts.some(
-  //     contact => contact.name.toLowerCase() === name.toLowerCase()
-  //   );
-  //   if (!isInBase) {
-  //     dispatch(addContact(name, number));
-  //     form.reset();
-  //   } else {
-  //     alert(`${name} is use. Try another name.`);
-  //   }
-  // };
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
+    const isInBase = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+    if (!isInBase) {
+      dispatch(addContact(name, number));
+      form.reset();
+    } else {
+      alert(`${name} is use. Try another name.`);
+    }
+  };
   return (
     <div className={css.primary}>
-      <form className={css.form}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <div className={css.container}>
           <label htmlFor="user-name" className={css.label}>
             Name

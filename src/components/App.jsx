@@ -5,7 +5,7 @@ import { ContactAdd } from './ContactAdd/ContactAdd';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { fetchContacts } from './redux/operations';
-import { getContacts } from './redux/state';
+import { getError, getIsLoading } from './redux/state';
 
 // const Key = 'Contacts';
 
@@ -14,7 +14,8 @@ export const App = () => {
   // const isMounted = useRef(false);
 
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector(getContacts);
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
 
   useEffect(() => {
     //   if (isMounted.current) {

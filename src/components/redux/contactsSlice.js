@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts } from './operations';
-addContact;
+import { addContact, deleteContact, fetchContacts } from './operations';
 // const contactsInitialState = {
 //   items: [],
 //   isLoading: false,
@@ -71,35 +70,37 @@ const contactsSlice = createSlice({
       .addCase(fetchContacts.rejected, (state, action) => {
         state.isLoading = false;
         state.items = action.payload;
+      })
+
+      // додати контакт
+      .addCase(addContact.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
+      .addCase(addContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+
+      // видалити контакт
+      .addCase(deleteContact.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+
+        // тут щось не так, треба пошукати
+      })
+      .addCase(deleteContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
       });
-
-    // додати контакт
-    // .addCase(addContact.pending, state => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(addContact.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.items = action.payload;
-    // })
-    // .addCase(addContact.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.items = action.payload;
-    // })
-
-    // видалити контакт
-    // .addCase(deleteContact.pending, state => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(deleteContact.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.items = action.payload;
-    // })
-    // .addCase(deleteContact.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.items = action.payload;
-    // })
   },
 });
 export const { fetchingError, fetchingInProgress, fetchingSuccess } =

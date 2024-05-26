@@ -4,6 +4,7 @@ import css from './Filter.module.css';
 
 export const Filter = () => {
   const dispatch = useDispatch();
+
   const changeHandler = e => {
     const filterValue = e.target.value;
     dispatch(setFilter(filterValue));
